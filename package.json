@@ -2,13 +2,13 @@
   "name": "ezindexdb",
   "version": "4.2.0",
   "description": "Easier way to work with indexDB for 90pct of use cases",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Keyri-Co/EZindexDB.git"
+    "url": "git+https://github.com/JWally/EZindexDB.git"
   },
   "author": "Justin W. Wolcott",
   "license": "ISC",
