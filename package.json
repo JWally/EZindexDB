@@ -1,5 +1,5 @@
 {
-  "name": "ezindexdb",
+  "name": "@justinwwolcott/ez-index-db",
   "version": "4.2.0",
   "description": "Easier way to work with indexDB for 90pct of use cases",
   "main": "index.mjs",
