@@ -1,0 +1,69 @@
+{
+  "ignorePatterns": ["cdk.out/", "coverage/", "lib/**/*.js", "bin/*.js", "dist"],
+  "env": {
+    "browser": false,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "plugin:@typescript-eslint/recommended" // Add TypeScript support
+  ],
+  "parser": "@typescript-eslint/parser", // Add TypeScript parser
+  "plugins": [
+    "prettier",
+    "@typescript-eslint" // Add TypeScript plugin
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.base.json" // Point to your tsconfig
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "import/prefer-default-export": "off",
+    "no-await-in-loop": "off",
+    "camelcase": "off",
+    "import/extensions": [
+      // Handle TypeScript imports
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      // Help ESLint resolve TypeScript imports
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.ts"], // Add TypeScript files pattern
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      }
+    },
+    {
+      "files": ["test/**"],
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended"],
+      "rules": {
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+      }
+    },
+    {
+      "files": ["lib/**"],
+      "rules": {
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": false }]
+      }
+    }
+  ]
+}
