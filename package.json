@@ -57,5 +57,8 @@
     "url": "git+https://github.com/JWally/EZindexDB.git"
   },
   "author": "Justin W. Wolcott",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@jest/globals": "^29.7.0"
+  }
 }

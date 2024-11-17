@@ -25,6 +25,7 @@
     "import/prefer-default-export": "off",
     "no-await-in-loop": "off",
     "camelcase": "off",
+    "class-methods-use-this": "off",
     "import/extensions": [
       // Handle TypeScript imports
       "error",
@@ -48,7 +49,7 @@
       "files": ["src/**/*.ts"], // Add TypeScript files pattern
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
-        "project": "./tsconfig.json"
+        "project": "./tsconfig.base.json"
       }
     },
     {

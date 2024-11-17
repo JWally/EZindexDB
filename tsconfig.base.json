@@ -17,12 +17,12 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "typeRoots": ["./node_modules/@types"],
-    "types": ["node","@types/jest"],
+    "types": ["node", "@types/jest"],
     "allowJs": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "rootDir": "src"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "cdk.out"]
 }
