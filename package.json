@@ -1,15 +1,14 @@
 {
   "name": "@justinwwolcott/ez-index-db",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Easier way to work with indexDB for 90pct of use cases",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     }
   },
   "type": "module",
