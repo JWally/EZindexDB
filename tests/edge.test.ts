@@ -172,10 +172,16 @@ describe('EZIndexDB Error Handling and Edge Cases', () => {
     it('should reject invalid string indexes', async () => {
       const invalidIndexes = [
         '', // empty string
-        'invalid.name', // contains period
-        'invalid@name', // contains special char
-        'invalid..name', // multiple special chars
-        'invalid--name', // multiple hyphens
+        '@invalid', // starts with special char
+        'invalid@name', // contains invalid special char
+        'invalid#name', // contains invalid special char
+        'name$suffix', // contains invalid special char
+        'invalid space', // contains space
+        'invalid%20name', // contains encoded space
+        'invalid/name', // contains slash
+        'invalid\\name', // contains backslash
+        'name!', // contains exclamation mark
+        'invalid:name', // contains colon
       ]
 
       invalidIndexes.forEach(async (index) => {
@@ -198,15 +204,23 @@ describe('EZIndexDB Error Handling and Edge Cases', () => {
       const invalidConfigs = [
         {
           name: 'test-index' as const,
-          keyPath: ['invalid..path'],
+          keyPath: ['@invalidstart'], // Invalid: starts with special char
         },
         {
           name: 'test-index' as const,
-          keyPath: ['valid', 'invalid@path'],
+          keyPath: ['valid', 'invalid@path'], // Invalid: contains @ symbol
         },
         {
           name: 'test-index' as const,
-          keyPath: ['valid.path', 'invalid..double'],
+          keyPath: ['valid.path', 'invalid space'], // Invalid: contains space
+        },
+        {
+          name: 'test-index' as const,
+          keyPath: ['valid', 'invalid#hash'], // Invalid: contains # symbol
+        },
+        {
+          name: 'test-index' as const,
+          keyPath: ['invalid/path'], // Invalid: contains forward slash
         },
       ] as ValidIndexConfig[]
 
@@ -364,10 +378,6 @@ describe('EZIndexDB Additional Coverage Tests', () => {
     const invalidConfigs = [
       {
         name: '' as ValidIndexName,
-        keyPath: 'test',
-      },
-      {
-        name: 'no-suffix' as ValidIndexName, // missing required -index suffix
         keyPath: 'test',
       },
       {

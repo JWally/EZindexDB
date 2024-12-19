@@ -1,6 +1,6 @@
-export type ValidTableName = `${string}-${string}` | `${string}_${string}` // Requires hyphen or underscore
-export type ValidDatabaseName = `${string}-db` | `${string}_db` // Must end with -db or _db
-export type ValidIndexName = `${string}-index` | `${string}_index`
+export type ValidTableName = string // Will be validated at runtime
+export type ValidDatabaseName = string // Will be validated at runtime
+export type ValidIndexName = string // Will be validated at runtime
 
 export type ValidKeyPath =
   | string // Single key path
@@ -44,25 +44,31 @@ class EZIndexDB {
   }
 
   // Runtime validation that matches the type definitions
+  private isValidName(name: string): boolean {
+    // Allows alphanumeric characters plus hyphens, underscores, and dots
+    // Must start with an alphanumeric character
+    return /^[a-zA-Z0-9][-._a-zA-Z0-9]*$/.test(name)
+  }
+
   private isValidTableName(name: string): name is ValidTableName {
-    return /^[a-zA-Z0-9]+[-_][a-zA-Z0-9]+$/.test(name)
+    return this.isValidName(name)
   }
 
   private isValidDatabaseName(name: string): name is ValidDatabaseName {
-    return /^[a-zA-Z0-9]+[-_]db$/.test(name)
+    return this.isValidName(name)
   }
 
   private validateIndexConfig(index: string | ValidIndexConfig): void {
     // If it's just a string, it should be a valid field name
     if (typeof index === 'string') {
-      if (!/^[a-zA-Z0-9]+[-_]?[a-zA-Z0-9]+$/.test(index)) {
+      if (!this.isValidName(index)) {
         throw new Error(`Invalid index name: ${index}. Must be a valid field name.`)
       }
       return
     }
 
     // Check name format
-    if (!index.name.endsWith('-index') && !index.name.endsWith('_index')) {
+    if (!this.isValidName(index.name)) {
       throw new Error(`Invalid index name: ${index.name}. Must end with -index or _index`)
     }
 
