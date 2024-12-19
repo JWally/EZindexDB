@@ -59,7 +59,7 @@
   "license": "ISC",
   "dependencies": {
     "@jest/globals": "^29.7.0"
-  },  
+  },
   "files": [
     "dist",
     "LICENSE",
