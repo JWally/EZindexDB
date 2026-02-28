@@ -1,0 +1,9 @@
+pre-commit:
+  piped: true
+  commands:
+    1-format:
+      run: npm run prettier:fix
+    2-lint:
+      run: npm run lint:fix
+    3-test:
+      run: npm run test

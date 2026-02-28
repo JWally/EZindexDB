@@ -26,7 +26,8 @@
     "lint:fix": "npx eslint --fix .",
     "prettier:check": "npx prettier --check .",
     "prettier:fix": "npx prettier --write .",
-    "release": "np"
+    "release": "np",
+    "prepare": "lefthook install"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
@@ -45,6 +46,7 @@
     "fake-indexeddb": "^6.0.0",
     "jest": "^29.7.0",
     "jest-junit": "^16.0.0",
+    "lefthook": "^2.1.1",
     "np": "^10.0.7",
     "prettier": "^3.3.3",
     "ts-jest": "^29.2.5",
